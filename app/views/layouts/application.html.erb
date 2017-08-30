@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Blog</title>
+    <%= favicon_link_tag 'favicon.png' %>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +10,33 @@
   </head>
 
   <body>
+  	<div id="sidebar">
+  		<div id="logo">
+  			<%= link_to root_path do %>
+  				<%= image_tag "dddragon.png" %>
+  			<% end %>
+  		</div>
+
+  		<ul>
+  			<li class="category">Website</li>
+  			<li><%= link_to "Blog", root_path %></li>
+  			<li>About</li>
+  		</ul>
+  		<ul>
+  			<li class="category">Social</li>
+  			<li><a href="https://6r36.wordpress.com/2012/01/05/happy-new-ynternet-2/">Hong Kong</a></li>
+  			<li><a href="https://6r36.wordpress.com/2012/03/20/loose-ends/">Morocco</a></li>
+  			<li><a href="https://6r36.wordpress.com/2011/03/08/marocco-part-2/">Morocco 2</a></li>
+  			<li><a href="https://6r36.wordpress.com/2011/03/12/morocco-final-part/">Morocco 3</a></li><br>
+  			<li><a href="/posts/new">New Post</a></li>
+  		</ul>  
+
+  		<p class="sign_in">Admin Login</p>		
+
+  	</div>
+    
+
     <%= yield %>
+  
   </body>
 </html>
