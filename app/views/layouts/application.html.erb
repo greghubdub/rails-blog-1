@@ -5,11 +5,18 @@
     <%= favicon_link_tag 'favicon.png' %>
     <%= csrf_meta_tags %>
 
+    <!--- as final output, Rails smashes asset specified asset files together -->
+    <!--- it'll be something like application-1fc71ddbb281c144b2ee4af31cf0e308.js -->
+    <!--- line 13 below lets Rails know to find that wild output file off all this -->
+
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+
+  	<!--- Namespacing: we can nest classes like my #sidebar and #logo below (but think classes) so as to only add certain styling to a certain nested combination -->
   	<div id="sidebar">
   		<div id="logo">
   			<%= link_to root_path do %>
