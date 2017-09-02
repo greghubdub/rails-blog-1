@@ -10,6 +10,8 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <!-- Compiled and minified JavaScript -->
@@ -41,8 +43,13 @@
   		</ul>
 
   		<p class="sign_in">Admin Login</p>
-
   	</div>
+
+    <div id="main_content">
+      <div id="header">
+        <p>All Posts</p>
+      </div>
+    </div>
 
 
     <%= yield %>
