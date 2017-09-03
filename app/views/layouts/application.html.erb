@@ -5,13 +5,17 @@
     <%= favicon_link_tag 'favicon.png' %>
     <%= csrf_meta_tags %>
 
-    <!--- as final output, Rails smashes asset specified asset files together -->
-    <!--- it'll be something like application-1fc71ddbb281c144b2ee4af31cf0e308.js -->
-    <!--- line 13 below lets Rails know to find that wild output file off all this -->
-
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   </head>
 
   <body>
@@ -27,7 +31,7 @@
   		<ul>
   			<li class="category">Website</li>
   			<li><%= link_to "Blog", root_path %></li>
-  			<li>About</li>
+  			<li><%= link_to "About", about_path %></li>
   		</ul>
   		<ul>
   			<li class="category">Social</li>
@@ -36,30 +40,40 @@
   			<li><a href="https://6r36.wordpress.com/2011/03/08/marocco-part-2/">Morocco 2</a></li>
   			<li><a href="https://6r36.wordpress.com/2011/03/12/morocco-final-part/">Morocco 3</a></li><br>
   			<li><a href="/posts/new">New Post</a></li>
-  		</ul>  
+  		</ul>
 
-  		<p class="sign_in">Admin Login</p>		
-
+      <% if !logged_in? %>
+  		  <p class="sign_in"><%= link_to "Admin Login", new_session_path %></p>
+      <% end %>
   	</div>
 
     <div id="main_content">
       <div id="header">
-        <p>All Posts</p>
+        <% if current_page?(root_path) %>
+          <p>All Posts</p>
+        <% elsif current_page?(about_path) %>
+          <p>About</p>
+        <% else %>
+          <%= link_to "Back to All Posts", root_path %>
+        <% end %>
 
         <div class="buttons">
-          <button class="button"><%= link_to "new Post", new_post_path %></button>
-          <button class="button">Log Out</button>
+        <% if current_user %>
+            <button class="button"><%= link_to "New Post", new_post_path %></button>
+            <button class="button"<%= link_to "Logout", session_path(current_user), method: :delete %></button>
+        <% else %>
+            <button class="button"><%= link_to "Register", new_user_path %></button>
+        <% end %>
         </div>
-      </div>
-      
-    <% flash.each do |name, msg| %>
-      <%= content_tag(:div, msg, class: "alert") %>
-    <% end %>
-    
 
-    <%= yield %>
+      </div>
+
+      <% flash.each do |name, message| %>
+        <%= content_tag(:div, message, class: "alert") %>
+      <% end %>
+
+      <%= yield %>
     </div>
 
-  
   </body>
 </html>
