@@ -5,6 +5,4 @@ class User < ApplicationRecord
   validates_presence_of :email, :username, :password_digest
   validates_presence_of :password_confirmation, if: :password_changed?
 
-  attr_accessible :username, :email
-
 end
