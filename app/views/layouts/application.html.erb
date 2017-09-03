@@ -59,8 +59,10 @@
 
         <div class="buttons">
         <% if current_user %>
+            <p>Hi <%= current_user.username %></p>
             <button class="button"><%= link_to "New Post", new_post_path %></button>
-            <button class="button"<%= link_to "Logout", session_path(current_user), method: :delete %></button>
+            <%= link_to "Logout", session_path(current_user), method: :delete %>
+ <!---           <button class="button"<%= link_to "Logout", session_path(current_user), method: :delete %></button> -->
         <% else %>
             <button class="button"><%= link_to "Register", new_user_path %></button>
         <% end %>
