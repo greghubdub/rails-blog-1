@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to "/users/#{@user.id}"
     else
-      flash.new[:error] = "We could not register you. Please include all information, and try again."
+      flash.now[:error] = "We could not register you. Please include all information, and try again."
       render 'new', status: 422
     end
   end
