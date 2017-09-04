@@ -12,7 +12,7 @@ class PostsController < ApplicationController
 
 		if @post.save
 			respond_to do |f| 
-				f.html { redirect_to @post }
+				f.html { redirect_to root_path }
 				f.js
 			end
 		else
