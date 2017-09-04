@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to "/users/#{@user.id}"
+      redirect_to root_path
     else
       flash.now[:error] = "We could not register you. Please include all information, and try again."
       render 'new', status: 422
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :email, :phone)
+    params.require(:user).permit(:username, :email, :password)
   end
 
 end
