@@ -11,7 +11,10 @@ class PostsController < ApplicationController
 		@post = Post.new(post_params)
 
 		if @post.save
-			redirect_to @post
+			respond_to do |f| 
+				f.html { redirect_to @post }
+				f.js
+			end
 		else
 			render 'new'
 		end
